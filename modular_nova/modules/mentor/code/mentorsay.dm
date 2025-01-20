@@ -1,10 +1,8 @@
-/client/proc/cmd_mentor_say(msg as text)
-	set category = "Mentor"
-	set name = "Msay" //Gave this shit a shorter name so you only have to time out "msay" rather than "mentor say" to use it --NeoFite
-	set hidden = 1
-	if(!is_mentor())
-		return
+ADMIN_VERB(cmd_mentor_say, R_MENTOR, "Msay", "Chat with other mentors.", ADMIN_CATEGORY_MENTOR)
+	user.holder.cmd_mentor_say()
+	BLACKBOX_LOG_ADMIN_VERB("msay")
 
+/datum/admins/proc/cmd_mentor_say(msg)
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)
 		return
